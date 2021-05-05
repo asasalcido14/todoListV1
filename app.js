@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 
 const app  = express();
 
+var items = ["Wake Up", "Brush Teeth", "Work Out"];
+
 // app.use tellse express to use ejs
 
 app.set('view engine', 'ejs');
@@ -21,15 +23,17 @@ app.get("/", function(req,res){
 
 var day = today.toLocaleDateString("en-US", options);
 
-
-  res.render("list", {kindOfDay: day});
+  res.render("list", {kindOfDay: day, newListItems: items});
 
 });
 
 app.post("/", function(req, res){
   var item = req.body.newItem;
-  console.log(item);
-})
+
+  items.push(item);
+res.redirect("/");
+
+});
 
 
 app.listen(3000, function(){
