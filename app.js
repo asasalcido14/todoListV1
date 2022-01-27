@@ -6,32 +6,37 @@ const app  = express();
 var items = ["Wake Up", "Brush Teeth", "Work Out"];
 
 // app.use tellse express to use ejs
-
+// app.set is REQUIRED to be directley under const = app express()
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static("public"));
 
 app.get("/", function(req,res){
 
-  var today = new Date();
+  let today = new Date();
 
-  var options = {
+  let options = {
     weekday: "long",
     day: "numeric",
     month: "long"
   };
 
-var day = today.toLocaleDateString("en-US", options);
+let day = today.toLocaleDateString("en-US", options);
 
   res.render("list", {kindOfDay: day, newListItems: items});
 
 });
 
 app.post("/", function(req, res){
-  var item = req.body.newItem;
+  let item = req.body.newItem;
+  // body parser  //
+  // newItem is packaged into item //
+
 
   items.push(item);
 res.redirect("/");
+// redirect to the home route //
 
 });
 

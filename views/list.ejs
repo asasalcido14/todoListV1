@@ -1,23 +1,37 @@
 <!DOCTYPE html>
+<!-- views folder must be created for the list.ejs file -->
+<!-- is the ejs symbol -->
+<!-- this file is a template file -->
+
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>To Do List</title>
-  </head>
-  <body>
-<!-- anything valid in an html file will be valid in an ejs file -->
-  <h1> <%= kindOfDay %> </h1>
 
-<ul>
-<% for (var i = 0; i < newListItems.length; i++) { %>
-  <li><%=  newListItems[i] %></li>
-<% } %>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>To Do List</title>
+</head>
 
-</ul>
-<form class="" action="/" method="post">
- <input type="text" name="newItem">
- <button type="submit" name="button">Add</button>
+<body>
+  <!-- anything valid in an html file will be valid in an ejs file -->
+  <div class="box" id="heading">
+    <h1> <%= kindOfDay %> </h1>
+  </div>
 
-</form>
-  </body>
+  <div class="box">
+    <% for (var i = 0; i < newListItems.length; i++) { %>
+    <div class="item">
+      <input type="checkbox" name="" value="">
+      <p><%=  newListItems[i] %></p>
+    </div>
+
+  <% } %>
+
+  <form class="item" action="/" method="post">
+    <input type="text" name="newItem" placeholder=" New Item" autocomplete="off">
+    <button type="submit" name="button">+</button>
+
+  </form>
+    </div>
+</body>
+
 </html>
